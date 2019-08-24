@@ -1,11 +1,11 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const checkPrivileges = require('../middlewares/checkPrivileges');
-const playersExist = require('../middlewares/playersExist');
-const checkScoreFormat = require('../middlewares/checkScoreFormat');
-const matchQuery = require('../helpers/matchQuery');
+import express from 'express';
+import mongoose from 'mongoose';
+import checkPrivileges from '../middlewares/checkPrivileges';
+import playersExist from '../middlewares/playersExist';
+import checkScoreFormat from '../middlewares/checkScoreFormat';
+import matchQuery from '../helpers/matchQuery';
 
-class MatchController {
+export default class MatchController {
   public path = '/players';
   public router = express.Router();
   public Match = mongoose.model('matches');
@@ -59,5 +59,3 @@ class MatchController {
     }
   };
 }
-
-module.exports = MatchController;

@@ -1,9 +1,9 @@
-import express = require('express');
-const checkPrivileges = require('../middlewares/checkPrivileges');
-const mongoose = require('mongoose');
-const rankPointsQuery = require('../helpers/rankPointsQuery');
+import express from 'express';
+import mongoose from 'mongoose';
+import checkPrivileges from '../middlewares/checkPrivileges';
+import rankPointsQuery from '../helpers/rankPointsQuery';
 
-class PlayerController {
+export default class PlayerController {
   public path = '/players';
   public router = express.Router();
   public Player = mongoose.model('players');
@@ -51,7 +51,8 @@ class PlayerController {
 
       const totalPoints = rankPoints1.map((rankPoint1: any) => {
         let rankPoint2 = rankPoints2.find(
-          (value: any) => value._id.toHexString() === rankPoint1._id.toHexString()
+          (value: any) =>
+            value._id.toHexString() === rankPoint1._id.toHexString()
         );
         return {
           ...rankPoint1,
@@ -65,5 +66,3 @@ class PlayerController {
     }
   };
 }
-
-module.exports = PlayerController;

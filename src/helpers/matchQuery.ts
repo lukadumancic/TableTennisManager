@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
-module.exports = (playerId1: String, playerId2: String, id: String) => {
+import mongoose from 'mongoose';
+
+export default (playerId1: string, playerId2: string, id: string) => {
   return [
     {
       $match: id

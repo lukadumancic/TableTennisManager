@@ -1,6 +1,11 @@
 const playerExists = require('../helpers/playerExists');
+import express from 'express';
 
-module.exports = async (req, res, next) => {
+export default async (
+  req: express.Request,
+  res: express.Response,
+  next: () => void
+) => {
   const { playerId1, playerId2 } = req.body;
   if (playerId1 && playerId2) {
     const playersExist = (await Promise.all([

@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-module.exports = async (playerId: Number): Promise<any> => {
+export default async (playerId: number): Promise<any> => {
   const Player = mongoose.model('players');
   try {
     const player = await Player.findOne({ _id: playerId });

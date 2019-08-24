@@ -1,7 +1,13 @@
+import express from 'express';
+
 const { MAX_SETS, MAX_GEMS_IN_SET } = require('../../config/constants');
 const WINNER_TARGET_SETS = Math.ceil(MAX_SETS / 2);
 
-module.exports = async (req, res, next) => {
+export default async (
+  req: express.Request,
+  res: express.Response,
+  next: () => void
+) => {
   const { score } = req.body;
   if (score) {
     if (Array.isArray(score)) {

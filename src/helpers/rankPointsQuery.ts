@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
-module.exports = (player: Number, playerId?: String) => {
+import mongoose from 'mongoose';
+
+export default (player: number, playerId?: string) => {
   const query = [
     {
       $match: playerId

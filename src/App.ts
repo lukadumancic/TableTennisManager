@@ -1,24 +1,24 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
 
-class App {
+export default class App {
   app: express.Application;
   port: number;
 
-  constructor(controllers: [any], port: number) {
+  constructor(controllers: any[], port: number) {
     this.app = express();
-    this.port = parseInt(process.env.PORT) || port;
+    this.port = port;
 
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
   }
 
   private initializeMiddlewares() {
-    this.app.use(bodyParser.urlencoded({ extended: false }))
+    this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(bodyParser.json());
   }
 
-  private initializeControllers(controllers: [any]) {
+  private initializeControllers(controllers: any[]) {
     controllers.forEach(controller => {
       this.app.use('/api', controller.router);
     });
@@ -30,5 +30,3 @@ class App {
     });
   }
 }
-
-module.exports = App;
