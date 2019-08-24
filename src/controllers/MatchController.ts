@@ -35,7 +35,6 @@ export default class MatchController {
 
       res.send(matches);
     } catch (e) {
-      console.log(e);
       res.send({ error: 'Something went wrong' });
     }
   };

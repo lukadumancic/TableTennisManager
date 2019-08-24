@@ -24,7 +24,6 @@ export default class PlayerController {
       const players = await this.Player.find({});
       res.send(players);
     } catch (e) {
-      console.log(e);
       res.send({ error: 'Something went wrong' });
     }
   };
@@ -39,7 +38,6 @@ export default class PlayerController {
         res.send({ error: 'Params missing' });
       }
     } catch (e) {
-      console.log(e);
       res.send({ error: 'Error while creating new player' });
     }
   };
@@ -59,9 +57,7 @@ export default class PlayerController {
           setWonSum: rankPoint1.setWonSum + rankPoint2.setWonSum
         };
       });
-      res.send(totalPoints);
-    } catch (e) {
-      console.log(e);
+      res.send(totalPoints)
       res.send({ error: 'Something went wrong' });
     }
   };
