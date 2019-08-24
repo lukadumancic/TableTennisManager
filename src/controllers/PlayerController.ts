@@ -1,6 +1,7 @@
 import express = require('express');
 const checkPrivileges = require('../middlewares/checkPrivileges');
 const mongoose = require('mongoose');
+const rankPointsQuery = require('../helpers/rankPointsQuery');
 
 class PlayerController {
   public path = '/players';
@@ -14,11 +15,18 @@ class PlayerController {
 
   public intializeRoutes() {
     this.router.get(this.path, this.getPlayers);
+    this.router.get(this.path + '/rank', this.getPlayerRankPoints);
     this.router.post(this.path, checkPrivileges, this.createPlayer);
   }
 
-  getPlayers = (req: express.Request, res: express.Response) => {
-    res.end('test');
+  getPlayers = async (req: express.Request, res: express.Response) => {
+    try {
+      const players = await this.Player.find({});
+      res.send(players);
+    } catch (e) {
+      console.log(e);
+      res.send({ error: 'Something went wrong' });
+    }
   };
 
   createPlayer = async (req: express.Request, res: express.Response) => {
@@ -33,6 +41,27 @@ class PlayerController {
     } catch (e) {
       console.log(e);
       res.send({ error: 'Error while creating new player' });
+    }
+  };
+
+  getPlayerRankPoints = async (req: express.Request, res: express.Response) => {
+    try {
+      const rankPoints1 = await this.Player.aggregate(rankPointsQuery(1));
+      const rankPoints2 = await this.Player.aggregate(rankPointsQuery(2));
+
+      const totalPoints = rankPoints1.map((rankPoint1: any) => {
+        let rankPoint2 = rankPoints2.find(
+          (value: any) => value._id.toHexString() === rankPoint1._id.toHexString()
+        );
+        return {
+          ...rankPoint1,
+          setWonSum: rankPoint1.setWonSum + rankPoint2.setWonSum
+        };
+      });
+      res.send(totalPoints);
+    } catch (e) {
+      console.log(e);
+      res.send({ error: 'Something went wrong' });
     }
   };
 }

@@ -1,8 +1,9 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const checkPrivileges = require('../middlewares/checkPrivileges');
 const playersExist = require('../middlewares/playersExist');
 const checkScoreFormat = require('../middlewares/checkScoreFormat');
-const mongoose = require('mongoose');
+const matchQuery = require('../helpers/matchQuery');
 
 class MatchController {
   public path = '/players';
@@ -25,8 +26,18 @@ class MatchController {
     );
   }
 
-  getMatches = (req: express.Request, res: express.Response) => {
-    res.send('test');
+  getMatches = async (req: express.Request, res: express.Response) => {
+    try {
+      const { playerId1, playerId2, id } = req.query;
+      const matches = await this.Match.aggregate(
+        matchQuery(playerId1, playerId2, id)
+      );
+
+      res.send(matches);
+    } catch (e) {
+      console.log(e);
+      res.send({ error: 'Something went wrong' });
+    }
   };
 
   createMatch = async (req: express.Request, res: express.Response) => {

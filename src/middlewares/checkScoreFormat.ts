@@ -14,8 +14,14 @@ module.exports = async (req, res, next) => {
               if (Math.abs(points1 - points2) === 2) {
                 if (points1 > points2) {
                   playerSets[0]++;
+                  if (playerSets[1] === WINNER_TARGET_SETS) {
+                    return res.send({ error: 'Too many sets' });
+                  }
                 } else {
                   playerSets[1]++;
+                  if (playerSets[0] === WINNER_TARGET_SETS) {
+                    return res.send({ error: 'Too many sets' });
+                  }
                 }
               } else {
                 return res.send({ error: 'Deuce points not valid' });
