@@ -57,7 +57,8 @@ export default class PlayerController {
           setWonSum: rankPoint1.setWonSum + rankPoint2.setWonSum
         };
       });
-      res.send(totalPoints)
+      res.send(totalPoints);
+    } catch (e) {
       res.send({ error: 'Something went wrong' });
     }
   };

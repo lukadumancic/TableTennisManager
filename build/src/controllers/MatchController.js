@@ -65,7 +65,6 @@ var MatchController = /** @class */ (function () {
                         return [3 /*break*/, 3];
                     case 2:
                         e_1 = _b.sent();
-                        console.log(e_1);
                         res.send({ error: 'Something went wrong' });
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];

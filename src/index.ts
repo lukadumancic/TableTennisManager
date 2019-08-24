@@ -3,7 +3,7 @@ import PlayerController from './controllers/PlayerController';
 import MatchController from './controllers/MatchController';
 import mongoose from 'mongoose';
 
-const keys = require('../config/keys');
+import keys from '../config/keys';
 
 require('./models/Players');
 require('./models/Matches');

@@ -1,5 +1,6 @@
-if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./prod');
-} else {
-  module.exports = require('./dev');
-}
+import prod from './prod';
+import dev from './dev';
+
+const keys: any = process.env.NODE_ENV === 'production' ? prod : dev;
+
+export default keys;

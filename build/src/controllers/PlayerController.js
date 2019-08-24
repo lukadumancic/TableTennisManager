@@ -73,7 +73,6 @@ var PlayerController = /** @class */ (function () {
                         return [3 /*break*/, 3];
                     case 2:
                         e_1 = _a.sent();
-                        console.log(e_1);
                         res.send({ error: 'Something went wrong' });
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
@@ -99,7 +98,6 @@ var PlayerController = /** @class */ (function () {
                     case 3: return [3 /*break*/, 5];
                     case 4:
                         e_2 = _a.sent();
-                        console.log(e_2);
                         res.send({ error: 'Error while creating new player' });
                         return [3 /*break*/, 5];
                     case 5: return [2 /*return*/];
@@ -128,7 +126,6 @@ var PlayerController = /** @class */ (function () {
                         return [3 /*break*/, 4];
                     case 3:
                         e_3 = _a.sent();
-                        console.log(e_3);
                         res.send({ error: 'Something went wrong' });
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
