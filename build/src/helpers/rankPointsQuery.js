@@ -49,11 +49,6 @@ exports.default = (function (player, playerId) {
                     }
                 }
             }
-        },
-        {
-            $sort: {
-                setWonSum: -1
-            }
         }
     ];
     return query;

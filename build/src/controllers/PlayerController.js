@@ -116,12 +116,14 @@ var PlayerController = /** @class */ (function () {
                         return [4 /*yield*/, this.Player.aggregate(rankPointsQuery_1.default(2))];
                     case 2:
                         rankPoints2_1 = _a.sent();
-                        totalPoints = rankPoints1.map(function (rankPoint1) {
+                        totalPoints = rankPoints1
+                            .map(function (rankPoint1) {
                             var rankPoint2 = rankPoints2_1.find(function (value) {
                                 return value._id.toHexString() === rankPoint1._id.toHexString();
                             });
                             return __assign({}, rankPoint1, { setWonSum: rankPoint1.setWonSum + rankPoint2.setWonSum });
-                        });
+                        })
+                            .sort(function (a, b) { return b.setWonSum - a.setWonSum; });
                         res.send(totalPoints);
                         return [3 /*break*/, 4];
                     case 3:

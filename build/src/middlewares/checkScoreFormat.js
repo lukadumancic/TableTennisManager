@@ -34,9 +34,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var _a = require('../../config/constants'), MAX_SETS = _a.MAX_SETS, MAX_GEMS_IN_SET = _a.MAX_GEMS_IN_SET;
+var constants_1 = __importDefault(require("../../config/constants"));
+var MAX_SETS = constants_1.default.MAX_SETS, MAX_GEMS_IN_SET = constants_1.default.MAX_GEMS_IN_SET;
 var WINNER_TARGET_SETS = Math.ceil(MAX_SETS / 2);
 exports.default = (function (req, res, next) { return __awaiter(_this, void 0, void 0, function () {
     var score, playerSets, i, _a, points1, points2;
@@ -44,7 +48,7 @@ exports.default = (function (req, res, next) { return __awaiter(_this, void 0, v
         score = req.body.score;
         if (score) {
             if (Array.isArray(score)) {
-                if (score.length <= MAX_SETS) {
+                if (score.length >= Math.ceil(MAX_SETS / 2)) {
                     if (score.every(function (value) { return Array.isArray(value) && value.length === 2; })) {
                         playerSets = [0, 0];
                         for (i = 0; i < score.length; i++) {

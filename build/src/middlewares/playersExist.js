@@ -34,9 +34,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var playerExists = require('../helpers/playerExists');
+var playerExists_1 = __importDefault(require("../helpers/playerExists"));
 exports.default = (function (req, res, next) { return __awaiter(_this, void 0, void 0, function () {
     var _a, playerId1, playerId2, playersExist, _b, _c, _d;
     return __generator(this, function (_e) {
@@ -45,12 +48,12 @@ exports.default = (function (req, res, next) { return __awaiter(_this, void 0, v
                 _a = req.body, playerId1 = _a.playerId1, playerId2 = _a.playerId2;
                 if (!(playerId1 && playerId2)) return [3 /*break*/, 4];
                 _c = (_b = Promise).all;
-                return [4 /*yield*/, playerExists(playerId1)];
+                return [4 /*yield*/, playerExists_1.default(playerId1)];
             case 1:
                 _d = [
                     _e.sent()
                 ];
-                return [4 /*yield*/, playerExists(playerId2)];
+                return [4 /*yield*/, playerExists_1.default(playerId2)];
             case 2: return [4 /*yield*/, _c.apply(_b, [_d.concat([
                         _e.sent()
                     ])])];

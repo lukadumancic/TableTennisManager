@@ -48,7 +48,7 @@ var MatchController = /** @class */ (function () {
     function MatchController(pathPrefix) {
         if (pathPrefix === void 0) { pathPrefix = ''; }
         var _this = this;
-        this.path = '/players';
+        this.path = '/matches';
         this.router = express_1.default.Router();
         this.Match = mongoose_1.default.model('matches');
         this.getMatches = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
@@ -72,11 +72,11 @@ var MatchController = /** @class */ (function () {
             });
         }); };
         this.createMatch = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var _a, playerId1, playerId2, score, match, e_2;
+            var _a, playerId1, playerId2, score, match, matches, e_2;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _b.trys.push([0, 2, , 3]);
+                        _b.trys.push([0, 3, , 4]);
                         _a = req.body, playerId1 = _a.playerId1, playerId2 = _a.playerId2, score = _a.score;
                         return [4 /*yield*/, this.Match.create({
                                 playerId1: playerId1,
@@ -90,13 +90,21 @@ var MatchController = /** @class */ (function () {
                             })];
                     case 1:
                         match = _b.sent();
-                        res.send(match);
-                        return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.Match.aggregate(matchQuery_1.default('', '', match._id))];
                     case 2:
+                        matches = _b.sent();
+                        if (matches && matches.length === 1) {
+                            res.send(matches[0]);
+                        }
+                        else {
+                            res.send({ error: 'Something went wrong' });
+                        }
+                        return [3 /*break*/, 4];
+                    case 3:
                         e_2 = _b.sent();
                         res.send({ error: 'Error while creating new match' });
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
                 }
             });
         }); };
