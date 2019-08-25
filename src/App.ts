@@ -26,7 +26,7 @@ export default class App {
   }
 
   private initializeStaticPageBuild() {
-    if (process.env.NODE_ENV === 'production') {
+    if (true || process.env.NODE_ENV === 'production') {
       const path = require('path');
       this.app.use(
         express.static(path.resolve(__dirname, '..', 'web', 'dist', 'web'))
