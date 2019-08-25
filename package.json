@@ -12,7 +12,11 @@
     "ts-node-dev": "^1.0.0-pre.30",
     "typescript": "^3.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^0.803.0",
+    "@angular/cli": "^8.3.0",
+    "@angular/compiler-cli": "^8.2.3"
+  },
   "scripts": {
     "tsc": "tsc -p ./src",
     "dev": "ts-node-dev --respawn --transpileOnly ./src/index.ts",
