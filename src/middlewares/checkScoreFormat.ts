@@ -20,12 +20,12 @@ export default async (
               if (Math.abs(points1 - points2) === 2) {
                 if (points1 > points2) {
                   playerSets[0]++;
-                  if (playerSets[1] === WINNER_TARGET_SETS) {
+                  if (playerSets[1] >= WINNER_TARGET_SETS) {
                     return res.send({ error: 'Too many sets' });
                   }
                 } else {
                   playerSets[1]++;
-                  if (playerSets[0] === WINNER_TARGET_SETS) {
+                  if (playerSets[0] >= WINNER_TARGET_SETS) {
                     return res.send({ error: 'Too many sets' });
                   }
                 }
@@ -37,11 +37,17 @@ export default async (
               points2 <= MAX_GEMS_IN_SET - 2
             ) {
               playerSets[0]++;
+              if (playerSets[1] >= WINNER_TARGET_SETS) {
+                return res.send({ error: 'Too many sets' });
+              }
             } else if (
               points2 === MAX_GEMS_IN_SET &&
               points1 <= MAX_GEMS_IN_SET - 2
             ) {
               playerSets[1]++;
+              if (playerSets[0] >= WINNER_TARGET_SETS) {
+                return res.send({ error: 'Too many sets' });
+              }
             } else {
               return res.send({ error: 'Set points not valid' });
             }
