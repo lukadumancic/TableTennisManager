@@ -21,6 +21,13 @@ var App = /** @class */ (function () {
         controllers.forEach(function (controller) {
             _this.app.use('/api', controller.router);
         });
+        if (true || process.env.NODE_ENV === 'production') {
+            this.app.use(express_1.default.static('client/build'));
+            var path_1 = require('path');
+            this.app.get('*', function (req, res) {
+                res.sendFile(path_1.resolve(__dirname, 'web', 'dist', 'web', 'index.html'));
+            });
+        }
     };
     App.prototype.listen = function () {
         var _this = this;

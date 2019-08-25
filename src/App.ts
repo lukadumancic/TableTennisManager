@@ -11,6 +11,7 @@ export default class App {
 
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
+    this.initializeStaticPageBuild();
   }
 
   private initializeMiddlewares() {
@@ -22,6 +23,20 @@ export default class App {
     controllers.forEach(controller => {
       this.app.use('/api', controller.router);
     });
+  }
+
+  private initializeStaticPageBuild() {
+    if (process.env.NODE_ENV === 'production') {
+      const path = require('path');
+      this.app.use(
+        express.static(path.resolve(__dirname, '..', 'web', 'dist', 'web'))
+      );
+      this.app.get('*', (req: express.Request, res: express.Response) => {
+        res.sendFile(
+          path.resolve(__dirname, '..', 'web', 'dist', 'web', 'index.html')
+        );
+      });
+    }
   }
 
   public listen() {

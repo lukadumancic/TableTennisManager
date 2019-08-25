@@ -14,9 +14,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "tsc": "tsc",
+    "tsc": "tsc -p ./src",
     "dev": "ts-node-dev --respawn --transpileOnly ./src/index.ts",
-    "start": "tsc && node ./build/src/index.js"
+    "start": "tsc && npm run build --prefix web && node ./build/src/index.js"
   },
   "repository": {
     "type": "git",
