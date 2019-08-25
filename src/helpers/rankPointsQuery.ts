@@ -44,11 +44,6 @@ export default (player: number, playerId?: string) => {
           }
         }
       }
-    },
-    {
-      $sort: {
-        setWonSum: -1
-      }
     }
   ];
   return query;

@@ -1,0 +1,42 @@
+<div>
+  <p>Create player</p>
+  <app-player-create (createPlayer)="createPlayer($event)"> </app-player-create>
+  <p>Create match</p>
+  <app-player-select
+    (selectedPlayerEvent)="selectPlayer1($event)"
+    [players]="players"
+  ></app-player-select>
+  <app-player-select
+    (selectedPlayerEvent)="selectPlayer2($event)"
+    [players]="players"
+  ></app-player-select>
+  <form class="form" (ngSubmit)="onSubmit()">
+    <table>
+      <tr>
+        <td *ngFor="let index of numbers">
+          <input
+            type="number"
+            name="gems{{ index }}0"
+            [(ngModel)]="gemsInSets[0][index]"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td *ngFor="let index of numbers">
+          <input
+            type="number"
+            name="gems{{ index }}1"
+            [(ngModel)]="gemsInSets[1][index]"
+          />
+        </td>
+      </tr>
+    </table>
+
+    <input type="submit" value="Submit" class="btn" />
+  </form>
+  <p>
+    <b>{{ matchError }}</b>
+  </p>
+  <p>Matches</p>
+  <app-match-display [matches]="displayMatches"></app-match-display>
+</div>

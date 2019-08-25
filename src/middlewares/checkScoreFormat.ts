@@ -1,6 +1,6 @@
 import express from 'express';
-
-const { MAX_SETS, MAX_GEMS_IN_SET } = require('../../config/constants');
+import constants from '../../config/constants';
+const { MAX_SETS, MAX_GEMS_IN_SET } = constants;
 const WINNER_TARGET_SETS = Math.ceil(MAX_SETS / 2);
 
 export default async (
@@ -11,7 +11,7 @@ export default async (
   const { score } = req.body;
   if (score) {
     if (Array.isArray(score)) {
-      if (score.length <= MAX_SETS) {
+      if (score.length >= Math.ceil(MAX_SETS / 2)) {
         if (score.every(value => Array.isArray(value) && value.length === 2)) {
           let playerSets = [0, 0];
           for (let i = 0; i < score.length; i++) {

@@ -1,0 +1,14 @@
+<div>
+  <p *ngFor="let match of matches">
+    {{ match.player1.name }} - {{ match.player2.name }}
+    <span *ngFor="let set of match.score">
+      (<ng-container *ngIf="set.points1 > set.points2; else elseTemplate">
+        <b>{{ set.points1 }}</b> - {{ set.points2 }}
+      </ng-container>
+      <ng-template #elseTemplate>
+        {{ set.points1 }} - <b>{{ set.points2 }}</b> </ng-template
+      >)
+    </span>
+  </p>
+  <p *ngIf="matches?.length === 0">No matches between 2 players</p>
+</div>

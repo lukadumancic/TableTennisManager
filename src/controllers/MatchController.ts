@@ -6,7 +6,7 @@ import checkScoreFormat from '../middlewares/checkScoreFormat';
 import matchQuery from '../helpers/matchQuery';
 
 export default class MatchController {
-  public path = '/players';
+  public path = '/matches';
   public router = express.Router();
   public Match = mongoose.model('matches');
 
@@ -52,7 +52,12 @@ export default class MatchController {
           };
         })
       });
-      res.send(match);
+      const matches = await this.Match.aggregate(matchQuery('', '', match._id));
+      if (matches && matches.length === 1) {
+        res.send(matches[0]);
+      } else {
+        res.send({ error: 'Something went wrong' });
+      }
     } catch (e) {
       res.send({ error: 'Error while creating new match' });
     }

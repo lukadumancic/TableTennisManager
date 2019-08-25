@@ -1,4 +1,4 @@
-const playerExists = require('../helpers/playerExists');
+import playerExists from '../helpers/playerExists';
 import express from 'express';
 
 export default async (

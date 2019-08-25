@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 export default class App {
   app: express.Application;
@@ -17,6 +18,7 @@ export default class App {
   private initializeMiddlewares() {
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(bodyParser.json());
+    this.app.use(cors());
   }
 
   private initializeControllers(controllers: any[]) {
@@ -29,7 +31,9 @@ export default class App {
     if (true || process.env.NODE_ENV === 'production') {
       const path = require('path');
       this.app.use(
-        express.static(path.resolve(__dirname, '..', '..', 'web', 'dist', 'web'))
+        express.static(
+          path.resolve(__dirname, '..', '..', 'web', 'dist', 'web')
+        )
       );
       this.app.get('*', (req: express.Request, res: express.Response) => {
         res.sendFile(

@@ -1,0 +1,6 @@
+<select name="selectedPlayer" (change)="onChange($event.target.value)" value="">
+  <option value="">Select player</option>
+  <option *ngFor="let player of players" [value]="player._id">
+    {{ player.name }}
+  </option>
+</select>

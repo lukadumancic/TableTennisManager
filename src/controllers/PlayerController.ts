@@ -47,16 +47,18 @@ export default class PlayerController {
       const rankPoints1 = await this.Player.aggregate(rankPointsQuery(1));
       const rankPoints2 = await this.Player.aggregate(rankPointsQuery(2));
 
-      const totalPoints = rankPoints1.map((rankPoint1: any) => {
-        let rankPoint2 = rankPoints2.find(
-          (value: any) =>
-            value._id.toHexString() === rankPoint1._id.toHexString()
-        );
-        return {
-          ...rankPoint1,
-          setWonSum: rankPoint1.setWonSum + rankPoint2.setWonSum
-        };
-      });
+      const totalPoints = rankPoints1
+        .map((rankPoint1: any) => {
+          let rankPoint2 = rankPoints2.find(
+            (value: any) =>
+              value._id.toHexString() === rankPoint1._id.toHexString()
+          );
+          return {
+            ...rankPoint1,
+            setWonSum: rankPoint1.setWonSum + rankPoint2.setWonSum
+          };
+        })
+        .sort((a, b) => b.setWonSum - a.setWonSum);
       res.send(totalPoints);
     } catch (e) {
       res.send({ error: 'Something went wrong' });

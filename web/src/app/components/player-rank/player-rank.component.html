@@ -1,0 +1,9 @@
+<div>
+  <p>Player rank</p>
+  <p *ngFor="let player of players">
+    {{ player.name }}
+    <span>
+      <b>{{ player.setWonSum }}</b>
+    </span>
+  </p>
+</div>
