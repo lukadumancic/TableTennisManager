@@ -29,7 +29,7 @@ export default class App {
     if (true || process.env.NODE_ENV === 'production') {
       const path = require('path');
       this.app.use(
-        express.static(path.resolve(__dirname, '..', 'web', 'dist', 'web'))
+        express.static(path.resolve(__dirname, '..', '..', 'web', 'dist', 'web'))
       );
       this.app.get('*', (req: express.Request, res: express.Response) => {
         res.sendFile(
