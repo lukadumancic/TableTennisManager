@@ -28,5 +28,9 @@
     "url": "git+https://github.com/lukadumancic/TableTennisManager.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": "12.4.0",
+    "npm": "6.9.0"
+  }
 }
