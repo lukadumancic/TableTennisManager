@@ -22,12 +22,12 @@
     "@angular/router": "~8.2.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
-  },
-  "devDependencies": {
+    "zone.js": "~0.9.1",
     "@angular-devkit/build-angular": "^0.803.0",
     "@angular/cli": "^8.3.0",
-    "@angular/compiler-cli": "^8.2.3",
+    "@angular/compiler-cli": "^8.2.3"
+  },
+  "devDependencies": {
     "@angular/language-service": "~8.2.3",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
